@@ -1,0 +1,7 @@
+<% if @current_game %>
+  <%= link_to "Continue", game_path(@current_game), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
+<% else %>
+  <%= form_tag(controller: "games", action: "create", method: "post") do %>
+    <%= submit_tag "New Game", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
+  <% end %>
+<% end %>
