@@ -1,11 +1,11 @@
-<%= turbo_frame_tag :control_panel, class: "flex flex-col h-full justify-evenly" do %>
-  <% @current_game.locations.each_slice(2) do |pair| %>
-    <div class="flex justify-evenly">
-      <%  pair.each do |location| %>
-        <%= form_tag(controller: "moves", action: "create", method: "post") do %>
-          <%= submit_tag t("locations.#{location.index}"), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
+<%= turbo_frame_tag :control_panel, class: "h-full" do %>
+  <div class="flex flex-col h-full justify-evenly">
+    <% @current_game.locations.each_slice(2) do |pair| %>
+      <div class="flex justify-evenly">
+        <%  pair.each do |location| %>
+          <%= link_to t("locations.#{location.index}"), location_path(location), data: {"turbo-stream": true}, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

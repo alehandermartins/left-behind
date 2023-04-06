@@ -12,22 +12,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_404_191_120) do
+ActiveRecord::Schema[7.0].define(version: 20_230_406_094_320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
-  create_table 'archetypes', force: :cascade do |t|
-    t.string 'name'
+  create_table 'game_actions', force: :cascade do |t|
+    t.bigint 'location_id'
+    t.integer 'cost', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'index'
+    t.integer 'status', default: 0
+    t.index ['location_id'], name: 'index_game_actions_on_location_id'
   end
 
   create_table 'games', force: :cascade do |t|
     t.integer 'status', default: 0
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.bigint 'archetype_id'
-    t.index ['archetype_id'], name: 'index_games_on_archetype_id'
+    t.string 'archetype'
   end
 
   create_table 'items', force: :cascade do |t|
@@ -45,8 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 20_230_404_191_120) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.integer 'index'
-    t.bigint 'archetype_id'
-    t.index ['archetype_id'], name: 'index_locations_on_archetype_id'
+    t.bigint 'game_id'
+    t.index ['game_id'], name: 'index_locations_on_game_id'
   end
 
   create_table 'user_games', force: :cascade do |t|
@@ -61,10 +64,9 @@ ActiveRecord::Schema[7.0].define(version: 20_230_404_191_120) do
   create_table 'users', force: :cascade do |t|
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.string 'uuid', default: 'c55e20bb-6650-46f3-91b3-4a4822c739c8'
+    t.string 'uuid', default: 'c51abe77-618e-4bc2-9092-13685e49961e'
   end
 
-  add_foreign_key 'games', 'archetypes'
   add_foreign_key 'items', 'games'
   add_foreign_key 'items', 'games', column: 'user_id'
   add_foreign_key 'user_games', 'games'

@@ -1,0 +1,2 @@
+<%= turbo_stream.update "oxygen_quantity", @current_user.oxygen.quantity %>
+<%= turbo_stream.replace "control_panel", partial: "locations/game_actions", locals: {location: @game_action.location} %>

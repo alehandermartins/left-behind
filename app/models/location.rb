@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
-  belongs_to :archetype
+  belongs_to :game
+  has_many :game_actions
 end
