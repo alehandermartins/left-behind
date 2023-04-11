@@ -35,3 +35,40 @@ en:
     1: "Life Support"
     2: "Science Lab"
     3: "Cargo Bay"
+  actions:
+    0:
+      title: "Maneuver Ship"
+      result: "Changes ship's direction to avoid more asteroids"
+    1:
+      title: "Communication Distress Signal"
+      result: "Signals for help, but doesn't address immediate problem"
+    2:
+      title: "Navigation System"
+      result: "Plots course to nearest safe haven"
+    3:
+      title: "Reboot System"
+      result: "Restores Life Support, but oxygen still leaking"
+    4:
+      title: "Emergency Oxygen"
+      result: "Restores Life Support, but oxygen still leaking"
+    5:
+      title: "Manual Override"
+      result: "Life Support controls overridden, but oxygen still leaking"
+    6:
+      title: "Analyze Asteroid Field"
+      result: "Scans asteroid field, but doesn't address immediate problem"
+    7:
+      title: "Repair Hull Damage"
+      result: "Fixes hull breaches, permanently stopping oxygen leak"
+    8:
+      title: "Power Management"
+      result: "Optimizes power levels, but doesn't address immediate problem"
+    9:
+      title: "Secure Loose Objects"
+      result: "Objects secured, but oxygen still leaking"
+    10:
+      title: "Seal Hull Breaches"
+      result: "Seals cracks, temporarily stopping oxygen leak"
+    11:
+      title: "Emergency Supplies"
+      result: "Accesses emergency supplies, but doesn't address immediate problem"

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GameAction < ApplicationRecord
+class Action < ApplicationRecord
   belongs_to :location
 
   validates :cost, numericality: { greater_than: 0 }
