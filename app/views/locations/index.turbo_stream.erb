@@ -1,0 +1,2 @@
+<%= turbo_stream.update "control_panel", partial: "locations/locations", locals: { locations: @locations } %>
+<%= turbo_stream.replace "back_button", partial: "shared/go_back", locals: { hidden: true } %>

@@ -9,18 +9,81 @@ class GameCreator
     ActiveRecord::Base.transaction do
       game = Game.create!(archetype: 'starship', status: :ongoing)
       UserGame.create!(user: @user, game: game)
+      @user.update!(current_game: game)
 
-      4.times do |n|
-        Location.create!(game: game, index: n)
-      end
+      archetype = YAML.safe_load(Rails.root.join("lib/archetypes/starship.yml").read)
 
-      locations = Location.all
-      [1, 1, 2, 1, 2, 3, 1, 3, 2, 1, 3, 2].each_with_index do |cost, index|
-        Action.create!(location: locations[index / 3], cost: cost, index: index)
+      archetype["locations"].each do |index, values|
+        location = Location.create!(game: game, index: index)
+
+        values["actions"].each do |a_index, action|
+          Action.create!(location: location, cost: action["cost"], necessary: action["necessary"], index: a_index)
+        end
       end
 
       Item.create!(game: game, user: @user, name: 'oxygen', quantity: 10)
       game
     end
+  end
+
+  def locations
+    {
+      0 => {
+        0 => {
+          cost: 2,
+          necessary: false
+        },
+        1 => {
+          cost: 3,
+          necessary: true
+        },
+        2 => {
+          cost: 2,
+          necessary: false
+        },
+      },
+      1 => {
+        3 => {
+          cost: 1,
+          necessary: true
+        },
+        4 => {
+          cost: 2,
+          necessary: false
+        },
+        5 => {
+          cost: 3,
+          necessary: false
+        },
+      },
+      2 => {
+        6 => {
+          cost: 3,
+          necessary: false
+        },
+        7 => {
+          cost: 1,
+          necessary: false
+        },
+        8 => {
+          cost: 2,
+          necessary: false
+        },
+      },
+      3 => {
+        9 => {
+          cost: 2,
+          necessary: true
+        },
+        10 => {
+          cost: 1,
+          necessary: false
+        },
+        11 => {
+          cost: 3,
+          necessary: false
+        },
+      }
+    }
   end
 end

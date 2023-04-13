@@ -1,0 +1,17 @@
+<div class="flex">
+  <div class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
+    <div class="min-w-0 flex-1">
+      <span class="absolute inset-0" aria-hidden="true"></span>
+      <% if @current_user.oxygen.quantity >= 0 %>
+        <div class= "text-green-500">
+          <%= t("endings.alive") %>
+        </div>
+      <% else %>
+        <div class= "text-red-500">
+          <%= t("endings.dead") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to "Exit", root_path, target: "_top", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>

@@ -1,13 +1,8 @@
-<div class="flex flex-col h-full justify-evenly">
-  <%= turbo_frame_tag :control_panel, class: "h-full" do %>
-    <div class="flex flex-col h-full justify-evenly">
-      <% @current_game.locations.each_slice(2) do |pair| %>
-        <div class="flex justify-evenly">
-          <%  pair.each do |location| %>
-            <%= link_to t("locations.#{location.index}"), location_path(location), data: {"turbo-stream": true}, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<%= turbo_frame_tag :control_panel, class: "flex-grow bg-blue-200 flex flex-col justify-evenly items-center" do %>
+  <% if current_game.ended? %>
+    <%= render partial: "games/ended" %>
+  <% else %>
+    <%= render partial: "locations/locations", locals: { locations: current_game.locations } %>
   <% end %>
-</div>
+<% end %>
+

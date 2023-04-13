@@ -4,12 +4,9 @@ class User < ApplicationRecord
   has_many :user_games
   has_many :games, through: :user_games
   has_many :items
-
-  def ongoing_game
-    games.ongoing.last
-  end
+  belongs_to :current_game, :class_name => "Game", :foreign_key => "game_id", optional: true
 
   def oxygen
-    items.oxygen.where(game: ongoing_game).last
+    items.oxygen.where(game: current_game).last
   end
 end

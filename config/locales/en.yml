@@ -30,45 +30,92 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  endings:
+    alive: "Congratulations! You managed to survive by activating the emergency thrusters to avoid the collision, resetting the oxygen filters to make the air breathable again, and synthesizing oxygen to replenish the supply. Well done!"
+    dead: "Despite your best efforts, you were unable to survive. The oxygen supply could not be replenished in time, leading to your demise"
   locations:
-    0: "Bridge"
-    1: "Life Support"
-    2: "Science Lab"
-    3: "Cargo Bay"
-  actions:
     0:
-      title: "Maneuver Ship"
-      result: "Changes ship's direction to avoid more asteroids"
+      name: "Bridge"
+      actions:
+        0:
+          title: "Redirect Auxiliary Power"
+          result: "Power was supplied to damaged systems"
+          description: "You redirect auxiliary power, supplying power to damaged systems"
+          cost: 2
+          necessary: false
+        1:
+          title: "Activate Emergency Thrusters"
+          result: "You avoided asteroid collision"
+          description: "You activate the emergency thrusters, avoiding asteroid collision"
+          cost: 3
+          necessary: true
+        2:
+          title: "Override Navigation Lock"
+          result: "You plotted a course away from the asteroid field"
+          description: "You override the navigation lock, plotting a course away from the asteroid field"
+          cost: 2
+          necessary: false
     1:
-      title: "Communication Distress Signal"
-      result: "Signals for help, but doesn't address immediate problem"
+      name: "Life Support"
+      actions:
+        0:
+          title: "Reset Oxygen Filters"
+          result: "The air became breathable again"
+          description: "You reset the filters, and the air becomes breathable again"
+          cost: 1
+          necessary: true
+        1:
+          title: "Power Cycle Oxygen Generators"
+          result: "The oxygen supply was temporarily boosted"
+          description: "You power cycle the generators, and the oxygen supply gets temporarily boosted"
+          cost: 2
+          necessary: false
+        2:
+          title: "Open Emergency Airlock"
+          result: "The module was depressurized to eliminate dangerous gases"
+          description: "You open the emergency airlock, and the module gets depressurized to eliminate dangerous gases"
+          cost: 3
+          necessary: false
+
     2:
-      title: "Navigation System"
-      result: "Plots course to nearest safe haven"
+      name: "Cargo Bay"
+      actions:
+        0:
+          title: "Activate Emergency Beacon"
+          result: "A call for help was sent"
+          description: "You activate the emergency beacon, sending out a call for help"
+          cost: 3
+          necessary: false
+        1:
+          title: "Deploy Repair Drones"
+          result: "Critical damage was repaired"
+          description: "You deploy repair drones, which repair critical damage"
+          cost: 1
+          necessary: false
+        2:
+          title: "Seal Cargo Bay Doors"
+          result: "Further damage was prevented"
+          description: "You seal the cargo bay doors, preventing further damage"
+          cost: 2
+          necessary: false
     3:
-      title: "Reboot System"
-      result: "Restores Life Support, but oxygen still leaking"
-    4:
-      title: "Emergency Oxygen"
-      result: "Restores Life Support, but oxygen still leaking"
-    5:
-      title: "Manual Override"
-      result: "Life Support controls overridden, but oxygen still leaking"
-    6:
-      title: "Analyze Asteroid Field"
-      result: "Scans asteroid field, but doesn't address immediate problem"
-    7:
-      title: "Repair Hull Damage"
-      result: "Fixes hull breaches, permanently stopping oxygen leak"
-    8:
-      title: "Power Management"
-      result: "Optimizes power levels, but doesn't address immediate problem"
-    9:
-      title: "Secure Loose Objects"
-      result: "Objects secured, but oxygen still leaking"
-    10:
-      title: "Seal Hull Breaches"
-      result: "Seals cracks, temporarily stopping oxygen leak"
-    11:
-      title: "Emergency Supplies"
-      result: "Accesses emergency supplies, but doesn't address immediate problem"
+      name: "Science Lab"
+      actions:
+        0:
+          title: "Synthesize Oxygen"
+          result: "The air became breathable again"
+          description: "You synthesize oxygen, making the air breathable again"
+          cost: 2
+          necessary: true
+        1:
+          title: "Research Asteroid Field"
+          result: "You found a safe route"
+          description: "You research the asteroid field, finding a safe route"
+          cost: 1
+          necessary: false
+        2:
+          title: "Override Security Lock"
+          result: "Essential systems were accessed"
+          description: "You override the security lock, accessing essential systems"
+          cost: 3
+          necessary: false
