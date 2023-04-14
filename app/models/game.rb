@@ -6,7 +6,19 @@ class Game < ApplicationRecord
   has_many :locations
   has_many :actions, through: :locations
 
-  enum :status, %i[created ongoing ended]
+  enum :status, %i[created started ended]
 
-  scope :ongoing, -> { where(status: :ongoing) }
+  def solved?
+    actions.where(necessary: true, status: 'undone').empty?
+  end
+
+  def started!
+    self.started_at = Time.now
+    super
+  end
+
+  def ended!
+    self.ended_at = Time.now
+    super
+  end
 end

@@ -1,8 +1,9 @@
 <%= turbo_frame_tag :control_panel, class: "flex-grow bg-blue-200 flex flex-col justify-evenly items-center" do %>
-  <% if current_game.ended? %>
-    <%= render partial: "games/ended" %>
-  <% else %>
+  <% if current_game.created? %>
+    <%= render partial: "games/created" %>
+  <% elsif current_game.started? %>
     <%= render partial: "locations/locations", locals: { locations: current_game.locations } %>
+  <% else %>
+    <%= render partial: "games/ended" %>
   <% end %>
 <% end %>
-

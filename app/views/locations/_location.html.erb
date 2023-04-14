@@ -1,3 +1,3 @@
-<% location.actions.each do |action| %>
+<% location.actions.order(:index).each do |action| %>
   <%= render partial: "actions/action", locals: { action: action } %>
 <% end %>

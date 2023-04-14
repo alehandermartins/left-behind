@@ -3,8 +3,8 @@
 Rails.application.routes.draw do
   root 'games#index'
 
-  resources 'games', only: %i[index create show]
-  resources 'locations', only: [:index, :show]
+  resources 'games', only: %i[index create show update]
+  resources 'locations', only: %i[index show]
   resources 'actions', only: [:update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

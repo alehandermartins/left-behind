@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_142819) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_140442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_142819) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "archetype"
+    t.datetime "started_at", precision: nil
+    t.datetime "ended_at", precision: nil
   end
 
   create_table "items", force: :cascade do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_142819) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["game_id"], name: "index_user_games_on_game_id"
     t.index ["user_id"], name: "index_user_games_on_user_id"
   end

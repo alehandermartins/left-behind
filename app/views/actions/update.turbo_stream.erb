@@ -1,5 +1,5 @@
 <%= turbo_stream.update "oxygen_quantity", oxygen %>
-<%= turbo_stream.update "logs", t("actions.#{@action.index}.description") %>
+<%= turbo_stream.update "logs", t("locations.#{@action.location.index}.actions.#{@action.index}.description") %>
 
 <% if current_game.ended? %>
   <%= turbo_stream.replace "back_button", partial: "shared/go_back", locals: { hidden: true } %>

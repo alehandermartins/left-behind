@@ -4,8 +4,7 @@ class GamesController < ApplicationController
   layout 'game', only: [:show]
   before_action :check_current_game, only: [:index]
 
-  def index
-  end
+  def index; end
 
   def create
     game = GameCreator.new(current_user).create
@@ -18,6 +17,10 @@ class GamesController < ApplicationController
 
   def show
     return redirect_to(root_path) unless current_game
+  end
+
+  def update
+    current_game.started!
   end
 
   private
