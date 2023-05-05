@@ -8,7 +8,12 @@
       <% end %>
       <div class="min-w-0 flex-1">
         <span class="absolute inset-0" aria-hidden="true"></span>
-        <% if action.undone? %>
+
+        <% if action.undone? && action.result == :failure %>
+          <div class="text-red-500">
+            <%= t("locations.#{action.location.index}.actions.#{action.index}.result.failure") %>
+          </div>
+        <% elsif action.undone? %>
           <%= button_to t("locations.#{action.location.index}.actions.#{action.index}.title"),
                         { controller: "actions",
                           action: "update",
@@ -18,9 +23,10 @@
                         class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
         <% else %>
           <div class= <%= action.necessary ? "text-green-500" : "text-black-500"%>>
-            <%= t("locations.#{action.location.index}.actions.#{action.index}.result") %>
+            <%= t("locations.#{action.location.index}.actions.#{action.index}.result.success") %>
           </div>
         <% end %>
+
       </div>
     </div>
   </div>

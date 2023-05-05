@@ -17,7 +17,13 @@ class GameCreator
         location = Location.create!(game: game, index: index)
 
         values['actions'].each do |a_index, action|
-          Action.create!(location: location, cost: action['cost'], necessary: action['necessary'], index: a_index)
+          Action.create!(
+            location: location,
+            cost: action['cost'],
+            necessary: action['necessary'],
+            index: a_index,
+            dependencies: action['dependencies']
+          )
         end
       end
 

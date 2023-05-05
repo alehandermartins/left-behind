@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def dead!
     user_games.find_by(game: current_game).dead!
   end
+
+  def suffocated?
+    oxygen.quantity == 0
+  end
 end

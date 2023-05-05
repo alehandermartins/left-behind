@@ -4,21 +4,27 @@ class ActionsController < ApplicationController
   def update
     @action = Action.find(params[:id])
 
-    if @action.cost <= current_user.oxygen.quantity
+    if @action.dependencies?
+      fail_action
+      kill_user if current_user.suffocated?
+    elsif @action.cost <= current_user.oxygen.quantity
       perform_action
+      check_game_ended
     else
-      current_user.oxygen.update!(quantity: 0)
-      kill_user
+      end_game
     end
   end
 
   private
 
-  def perform_action
-    @action.done!
-    current_user.oxygen.decrement! :quantity, @action.cost
+  def fail_action
+    @action.failure!
+    current_user.oxygen.decrement! :quantity, 1
+  end
 
-    check_game_ended
+  def perform_action
+    @action.success!
+    current_user.oxygen.decrement! :quantity, @action.cost
   end
 
   def kill_user
@@ -32,6 +38,12 @@ class ActionsController < ApplicationController
       return
     end
 
-    kill_user if current_user.oxygen.quantity == 0
+    kill_user if current_user.suffocated?
+  end
+
+  def end_game
+    @action.failure!
+    current_user.oxygen.update!(quantity: 0)
+    kill_user
   end
 end
