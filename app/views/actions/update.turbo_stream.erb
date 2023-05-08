@@ -1,6 +1,9 @@
 <%= turbo_stream.update "oxygen_quantity", oxygen %>
 <%= turbo_stream.update "logs", t("locations.#{@action.location.index}.actions.#{@action.index}.description.#{@action.result}") %>
 
+<% hint = @action.needs_hint? ? t("hints.#{rand(5)}") : "" %>
+<%= turbo_stream.update "hint", hint %>
+
 <% if current_game.ended? %>
   <%= turbo_stream.replace "back_button", partial: "shared/go_back", locals: { invisible: true } %>
   <%= turbo_stream.update "control_panel", partial: "games/ended" %>

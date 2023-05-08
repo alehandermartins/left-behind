@@ -27,8 +27,9 @@
 
       <%= yield %>
 
-      <footer class="bg-gray-800 text-white h-48 flex items-center justify-center text-center">
+      <footer class="flex items-center flex-col bg-gray-800 text-white h-48 flex items-center justify-center text-center">
         <p id="logs"><%= current_game.created? ? t("intro") : t("logs") %></p>
+        <p class="text-green-500" id="hint"></p>
       </footer>
     </div>
   </body>

@@ -24,6 +24,10 @@ class Action < ApplicationRecord
     Action.where(game: game, index: extract_dependencies, status: :undone).any?
   end
 
+  def needs_hint?
+    self.undone? || !self.necessary
+  end
+
   private
 
   def extract_dependencies
