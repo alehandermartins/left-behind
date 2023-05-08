@@ -4,6 +4,7 @@
 <% if current_game.ended? %>
   <%= turbo_stream.replace "back_button", partial: "shared/go_back", locals: { invisible: true } %>
   <%= turbo_stream.update "control_panel", partial: "games/ended" %>
+  <%= turbo_stream.replace "clock", partial: "shared/clock" %>
 <% else %>
   <%= turbo_stream.replace @action, @action %>
 <% end %>

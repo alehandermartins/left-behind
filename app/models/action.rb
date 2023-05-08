@@ -2,6 +2,7 @@
 
 class Action < ApplicationRecord
   belongs_to :location
+  belongs_to :game
 
   validates :cost, numericality: { greater_than: 0 }
   attribute :result, enum: %i[success failure]
@@ -20,7 +21,7 @@ class Action < ApplicationRecord
   def dependencies?
     return false if self.dependencies.blank?
 
-    Action.where(index: extract_dependencies, status: :undone).any?
+    Action.where(game: game, index: extract_dependencies, status: :undone).any?
   end
 
   private

@@ -1,1 +1,2 @@
 <%= turbo_stream.update "control_panel", partial: "locations/locations", locals: { locations: current_game.locations } %>
+<%= turbo_stream.replace "clock", partial: "shared/clock" %>

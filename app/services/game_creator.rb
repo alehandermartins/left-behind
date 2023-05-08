@@ -18,6 +18,7 @@ class GameCreator
 
         values['actions'].each do |a_index, action|
           Action.create!(
+            game: game,
             location: location,
             cost: action['cost'],
             necessary: action['necessary'],
