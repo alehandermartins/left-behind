@@ -17,6 +17,8 @@ class GamesController < ApplicationController
 
   def show
     return redirect_to(root_path) unless current_game
+
+    check_game_overtimed
   end
 
   def update

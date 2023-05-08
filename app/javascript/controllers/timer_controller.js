@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 var _clock
+var game_duration = 600
 
 export default class extends Controller {
   static values = { start: Number, end: Number }
@@ -13,8 +14,9 @@ export default class extends Controller {
     }
 
     if(this.endValue != 0){
-      const max_time = this.startValue + 600
+      const max_time = this.startValue + game_duration
       const seconds_left = max_time - this.endValue
+
       this.element.innerHTML = this.parseTime(seconds_left)
       return
     }
@@ -30,7 +32,7 @@ export default class extends Controller {
   updateClock(self, start_time) {
     var elem = document.getElementById("clock")
 
-    const max_time = start_time + 600
+    const max_time = start_time + game_duration
     const now = new Date()
     const now_time = Math.round(now.getTime() / 1000)
 
@@ -42,6 +44,9 @@ export default class extends Controller {
   }
 
   parseTime(seconds_left){
+    if(seconds_left < 0)
+      seconds_left = 0
+
     var minutes = Math.floor(seconds_left / 60)
     var seconds = seconds_left % 60
 

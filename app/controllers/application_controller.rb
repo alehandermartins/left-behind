@@ -17,4 +17,13 @@ class ApplicationController < ActionController::Base
   def current_game
     current_user.current_game
   end
+
+  def check_game_overtimed
+    return unless current_game
+
+    if current_game.overtimed?
+      current_user.dead!
+      current_game.ended!
+    end
+  end
 end

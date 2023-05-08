@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ActionsController < ApplicationController
+  before_action :check_game_overtimed, only: [:update]
+
   def update
+    return redirect_to game_path(current_game) if current_game.ended?
+
     @action = Action.find(params[:id])
 
     if @action.dependencies?
