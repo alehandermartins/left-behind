@@ -3,6 +3,12 @@ logs: "Awaiting logs..."
 endings:
   alive: "Congratulations! You managed to survive by activating the emergency thrusters to avoid the collision, resetting the oxygen filters to make the air breathable again, and synthesizing oxygen to replenish the supply. Well done!"
   dead: "Despite your best efforts, you were unable to survive. The oxygen supply could not be replenished in time, leading to your demise"
+hints:
+  0: "Find how to change the ship's direction"
+  1: "Try to find a way to purify the air you breathe"
+  2: "Is it possible to create oxygen out of thin air?"
+  3: "Try to restore the ship's damaged oxygen system"
+  4: "You need to take quick and forceful action to avoid collision"
 locations:
   0:
     name: "Bridge"

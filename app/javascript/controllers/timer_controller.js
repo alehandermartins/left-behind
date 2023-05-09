@@ -22,17 +22,17 @@ export default class extends Controller {
     }
 
     this.updateClock(this, this.startValue)
-    _clock = setInterval(this.updateClock, 1000, this, this.startValue)
+    _clock = setInterval(this.updateClock, 1000, this)
   }
 
   stopClock() {
     clearInterval(_clock)
   }
 
-  updateClock(self, start_time) {
+  updateClock(self) {
     var elem = document.getElementById("clock")
 
-    const max_time = start_time + game_duration
+    const max_time = self.startValue + game_duration
     const now = new Date()
     const now_time = Math.round(now.getTime() / 1000)
 
