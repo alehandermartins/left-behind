@@ -5,3 +5,14 @@
     <%= submit_tag "New Game", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
   <% end %>
 <% end %>
+
+<% if !user_loged_in? %>
+  <div class="flex flex-col items-center">
+    <%= form_with url: session_provider_path, method: :post do %>
+      <%= button_tag data: { turbo: false }, class: "flex items-center bg-green-700 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-green-700 transform hover:-translate-y-1 hover:shadow-lg" do %>
+        <span>Sign in with Google</span>
+      <% end %>
+    <% end %>
+    <p class="text-gray-500 text-xs mt-2">...and keep your progress.</p>
+  </div>
+<% end %>

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :items
   belongs_to :current_game, class_name: 'Game', foreign_key: 'game_id', optional: true
 
+  validates :uuid, presence: true
+
   def oxygen
     items.oxygen.where(game: current_game).last
   end

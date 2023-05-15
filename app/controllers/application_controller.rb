@@ -15,15 +15,18 @@ class ApplicationController < ActionController::Base
   end
 
   def current_game
-    current_user.current_game
+    @current_game ||= current_user.current_game
   end
 
-  def check_game_overtimed
+  def check_current_game
     return unless current_game
 
     if current_game.overtimed?
       current_user.dead!
       current_game.ended!
     end
+
+    current_user.update!(current_game: nil) if current_game.ended?
+    @current_game = nil
   end
 end

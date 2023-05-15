@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ActionsController < ApplicationController
-  before_action :check_game_overtimed, only: [:update]
+  before_action :check_current_game, only: [:update]
 
   def update
-    return redirect_to game_path(current_game) if current_game.ended?
+    return redirect_to root_path unless current_game
 
     @action = Action.find(params[:id])
 
@@ -38,6 +38,7 @@ class ActionsController < ApplicationController
 
   def check_game_ended
     if current_game.solved?
+      puts "here"
       current_game.ended!
       return
     end

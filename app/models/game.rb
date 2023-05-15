@@ -30,4 +30,8 @@ class Game < ApplicationRecord
   def overtimed?
     self.started? && Time.current > self.started_at + GAME_LENGTH
   end
+
+  def unresolved_action
+    actions.where(necessary: true, status: :undone).sample
+  end
 end

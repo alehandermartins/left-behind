@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_083817) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_15_185856) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
@@ -69,8 +70,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_083817) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "uuid", default: "c51abe77-618e-4bc2-9092-13685e49961e"
+    t.string "uuid", null: false
     t.bigint "game_id"
+    t.citext "email"
+    t.string "name"
+    t.index ["email"], name: "index_users_on_email"
     t.index ["game_id"], name: "index_users_on_game_id"
   end
 

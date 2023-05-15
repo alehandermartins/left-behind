@@ -35,12 +35,6 @@ en:
   endings:
     alive: "Congratulations! You managed to survive by activating the emergency thrusters to avoid the collision, resetting the oxygen filters to make the air breathable again, and synthesizing oxygen to replenish the supply. Well done!"
     dead: "Despite your best efforts, you were unable to survive. The oxygen supply could not be replenished in time, leading to your demise"
-  hints:
-    0: "Find how to change the ship's direction"
-    1: "Try to find a way to purify the air you breathe"
-    2: "Is it possible to create oxygen out of thin air?"
-    3: "Try to restore the ship's damaged oxygen system"
-    4: "You need to take quick and forceful action to avoid collision"
   locations:
     0:
       name: "Bridge"
@@ -62,6 +56,9 @@ en:
             success: "You activate the emergency thrusters, avoiding asteroid collision"
             failure: "You activate the emergency thrusters, but they fail to start, and the asteroid collision is unavoidable"
           dependencies:
+          hints:
+            0: "Find how to change the ship's direction"
+            1: "You need to take quick and forceful action to avoid collision"
           necessary: true
           title: "Activate Emergency Thrusters"
           result:
@@ -88,6 +85,9 @@ en:
             success: "You reset the filters, and the air becomes breathable again"
             failure: "You reset the filters, but they fail to function, and the air remains toxic"
           dependencies:
+          hints:
+            0: "Try to find a way to purify the air you breathe"
+            1: "Try to restore the ship's damaged oxygen system"
           necessary: true
           title: "Reset Oxygen Filters"
           result:
@@ -161,6 +161,9 @@ en:
             success: "You synthesize oxygen, making the air breathable again"
             failure: "You synthesize oxygen, but the synthesizer fails to operate, and the air remains toxic"
           dependencies: "3"
+          hints:
+            0: "Is it possible to create oxygen out of thin air?"
+            1: "Time to use your chemistry knowledge"
           necessary: true
           title: "Synthesize Oxygen"
           result:
