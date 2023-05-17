@@ -1,5 +1,5 @@
 <%= turbo_stream.update "oxygen_quantity", oxygen %>
-<%= turbo_stream.update "logs", t("locations.#{@action.location.index}.actions.#{@action.index}.description.#{@action.result}") %>
+<%= turbo_stream.update "logs", trans("locations.#{@action.location.index}.actions.#{@action.index}.description.#{@action.result}") %>
 
 <% action_hint = @action.needs_hint? ? hint : "" %>
 

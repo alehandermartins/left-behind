@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :user_games
   has_many :games, through: :user_games
   has_many :items
+  has_many :scores
+
   belongs_to :current_game, class_name: 'Game', foreign_key: 'game_id', optional: true
 
   validates :uuid, presence: true
@@ -26,5 +28,9 @@ class User < ApplicationRecord
 
   def suffocated?
     oxygen.quantity == 0
+  end
+
+  def current_score
+    scores.find_by(game: current_game)
   end
 end

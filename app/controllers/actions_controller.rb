@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ActionsController < ApplicationController
-  before_action :check_current_game, only: [:update]
 
   def update
     return redirect_to root_path unless current_game
@@ -10,13 +9,13 @@ class ActionsController < ApplicationController
 
     if @action.dependencies?
       fail_action
-      kill_user if current_user.suffocated?
     elsif @action.cost <= current_user.oxygen.quantity
       perform_action
-      check_game_ended
     else
-      end_game
+      fail_action_last_time
     end
+
+    GameChecker.new(current_user).check_end_game
   end
 
   private
@@ -26,29 +25,13 @@ class ActionsController < ApplicationController
     current_user.oxygen.decrement! :quantity, 1
   end
 
+  def fail_action_last_time
+    @action.failure!
+    current_user.oxygen.update!(quantity: 0)
+  end
+
   def perform_action
     @action.success!
     current_user.oxygen.decrement! :quantity, @action.cost
-  end
-
-  def kill_user
-    current_user.dead!
-    current_game.ended!
-  end
-
-  def check_game_ended
-    if current_game.solved?
-      puts "here"
-      current_game.ended!
-      return
-    end
-
-    kill_user if current_user.suffocated?
-  end
-
-  def end_game
-    @action.failure!
-    current_user.oxygen.update!(quantity: 0)
-    kill_user
   end
 end

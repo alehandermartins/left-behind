@@ -2,7 +2,6 @@
 
 class GamesController < ApplicationController
   layout 'game', only: [:show]
-  before_action :check_current_game, only: [:show]
 
   def create
     game = GameCreator.new(current_user).create

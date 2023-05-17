@@ -6,9 +6,8 @@ class SessionsController < ApplicationController
   GOOGLE_AUTH_PROFILE_URL = "https://openidconnect.googleapis.com"
   GOOGLE_AUTH_PROFILE_ENDPOINT = "/v1/userinfo"
 
-
-
-  before_action :check_current_game, only: [:new]
+  GOOGLE_AUTH_CLIENT_ID = ENV["GOOGLE_AUTH_CLIENT_ID"]
+  GOOGLE_AUTH_SECRET = ENV["GOOGLE_AUTH_SECRET"]
 
   def new; end
 
