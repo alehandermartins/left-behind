@@ -11,6 +11,8 @@ class UserIdentifier
       ActiveRecord::Base.transaction do
         user.update(uuid: @current_user.uuid, name: user_params["name"])
         UserGame.where(user_id: @current_user.id).update_all(user_id: user.id)
+        Score.where(user_id: @current_user.id).update_all(user_id: user.id)
+        HighScore.where(user_id: @current_user.id).update_all(user_id: user.id)
         Item.where(user_id: @current_user.id).update_all(user_id: user.id)
         @current_user.destroy!
       end

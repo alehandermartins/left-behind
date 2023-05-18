@@ -1,0 +1,33 @@
+<% content_for :back_home do %>
+  <%= link_to "Go Back", root_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
+<% end %>
+
+<div class="flex flex-col">
+  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200 text-center">
+          <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+            <th scope="col" class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+            <th scope="col" class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Solved</th>
+            <th scope="col" class="text-center px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unsolved</th>
+          </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+          <% @high_scores.each do |high_score| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap"><%= high_score.user.name.present? ? high_score.user.name : "N/A" %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= high_score.total %> </td>
+              <td class="px-6 py-4 whitespace-nowrap text-green-500"><%= high_score.solved %></td>
+              <td class="px-6 py-4 whitespace-nowrap text-red-500"><%= high_score.unsolved %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/log_in' %>

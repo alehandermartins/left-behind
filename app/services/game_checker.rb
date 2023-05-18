@@ -37,6 +37,11 @@ class GameChecker
 
   def end_game
     @game.ended!
-    Score.new(user: @user, game: @game).save!
+    score = Score.new(user: @user, game: @game)
+    score.save!
+
+    high_score = HighScore.find_or_initialize_by(user: @user)
+    high_score.add_score(score)
+    high_score.save!
   end
 end

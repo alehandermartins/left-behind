@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources 'games', only: %i[create show update]
   resources 'locations', only: %i[index show]
   resources 'actions', only: [:update]
+  resources 'scores', only: [:index]
+  resources 'high_scores', only: [:index]
 end

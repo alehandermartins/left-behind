@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :games, through: :user_games
   has_many :items
   has_many :scores
+  has_one :high_score
 
   belongs_to :current_game, class_name: 'Game', foreign_key: 'game_id', optional: true
 
