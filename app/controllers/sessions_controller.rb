@@ -17,13 +17,15 @@ class SessionsController < ApplicationController
     else
       UserIdentifier.new(current_user).identify(user_profile)
 
-      redirect_to root_path
+      redirect_to session[:return_path]
     end
   rescue StandardError => e
     render_error_response("failed to connect")
   end
 
   def redirect_to_provider
+    puts request.referrer
+    session[:return_path] = request.referrer
     redirect_to(sign_in_url, allow_other_host: true)
   end
 
@@ -75,7 +77,6 @@ class SessionsController < ApplicationController
       end
 
     body = JSON.parse(response.body)
-    puts body
 
     raise GoogleAuthentication::ServiceError, "failed to connect" if !response.success? && body["error"].blank?
 
@@ -98,7 +99,6 @@ class SessionsController < ApplicationController
       end
 
     body = JSON.parse(response.body)
-    puts body
 
     raise GoogleAuthentication::ServiceError, "failed to connect" if !response.success? && body["error"].blank?
 
@@ -120,7 +120,7 @@ class SessionsController < ApplicationController
   end
 
   def render_error_response(message)
-    flash.now[:error] = "Service Error: #{message}"
-    render :new
+    flash[:error] = "Service Error: #{message}"
+    redirect_to session[:return_path]
   end
 end
