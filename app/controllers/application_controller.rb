@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_current_game
-    @current_game = GameChecker.new(@current_user).current_game
+    @current_game = GameChecker.new(current_player).current_game
   end
 
   def current_user
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def current_game
     @current_game
+  end
+
+  def current_player
+    @current_player ||= @current_user.player
   end
 end

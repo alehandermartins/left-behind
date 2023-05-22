@@ -2,7 +2,7 @@
   <div class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
     <div class="min-w-0 flex-1">
       <span class="absolute inset-0" aria-hidden="true"></span>
-      <% if @current_user.alive? %>
+      <% if current_player.alive? %>
         <div class= "text-green-500">
           <%= trans("endings.alive") %>
         </div>
@@ -21,16 +21,14 @@
         <table class="min-w-full divide-y divide-gray-200 text-center">
           <thead class="bg-gray-50">
           <tr>
-            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oxygen</th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Remaining Time</th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
           </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
           <tr>
-            <td class="px-6 py-4 whitespace-nowrap"><%= score.resource %> * 100</td>
-            <td class="px-6 py-4 whitespace-nowrap"><%= score.time %></td>
-            <td class="px-6 py-4 whitespace-nowrap <%= @current_user.alive? ? "text-green-500" : "text-red-500" %>"><%= score.total %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= current_player.score.time %></td>
+            <td class="px-6 py-4 whitespace-nowrap <%= current_player.alive? ? "text-green-500" : "text-red-500" %>"><%= current_player.score.total %></td>
           </tr>
           </tbody>
         </table>
@@ -39,4 +37,4 @@
   </div>
 </div>
 <%= render 'shared/log_in' %>
-<%= link_to "Exit", root_path, target: "_top", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
+<%= button_to "Exit", current_game, :method => :delete, data: { turbo_frame: :_top }, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>

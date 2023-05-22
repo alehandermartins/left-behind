@@ -8,7 +8,7 @@ class GameCreator
   def create
     ActiveRecord::Base.transaction do
       game = Game.create!(archetype: 'starship')
-      UserGame.create!(user: @user, game: game)
+      Player.create!(user: @user, game: game)
       @user.update!(current_game: game)
 
       archetype = YAML.safe_load(Rails.root.join('lib/archetypes/starship.yml').read)
@@ -28,7 +28,6 @@ class GameCreator
         end
       end
 
-      Item.create!(game: game, user: @user, name: 'oxygen', quantity: 10)
       game
     end
   end

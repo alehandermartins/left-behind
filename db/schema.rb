@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_125853) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_200011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "plpgsql"
@@ -48,17 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_125853) do
     t.index ["user_id"], name: "index_high_scores_on_user_id"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.integer "quantity"
-    t.index ["game_id"], name: "index_items_on_game_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,45 +56,42 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_125853) do
     t.index ["game_id"], name: "index_locations_on_game_id"
   end
 
-  create_table "scores", force: :cascade do |t|
-    t.bigint "game_id", null: false
-    t.bigint "user_id", null: false
-    t.string "archetype", null: false
-    t.integer "resource", null: false
-    t.integer "time", null: false
-    t.integer "total", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_scores_on_game_id"
-    t.index ["user_id"], name: "index_scores_on_user_id"
-  end
-
-  create_table "user_games", force: :cascade do |t|
+  create_table "players", force: :cascade do |t|
     t.bigint "game_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.index ["game_id"], name: "index_user_games_on_game_id"
-    t.index ["user_id"], name: "index_user_games_on_user_id"
+    t.integer "penalties", default: 0
+    t.index ["game_id"], name: "index_players_on_game_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.string "archetype", null: false
+    t.integer "time", null: false
+    t.integer "total", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "player_id"
+    t.index ["game_id"], name: "index_scores_on_game_id"
+    t.index ["player_id"], name: "index_scores_on_player_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
-    t.bigint "game_id"
     t.citext "email"
     t.string "name"
+    t.bigint "game_id"
     t.index ["email"], name: "index_users_on_email"
     t.index ["game_id"], name: "index_users_on_game_id"
   end
 
   add_foreign_key "high_scores", "users"
-  add_foreign_key "items", "games"
-  add_foreign_key "items", "games", column: "user_id"
+  add_foreign_key "players", "games"
+  add_foreign_key "players", "users"
   add_foreign_key "scores", "games"
-  add_foreign_key "scores", "users"
-  add_foreign_key "user_games", "games"
-  add_foreign_key "user_games", "users"
 end

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
-  has_many :user_games
-  has_many :users, through: :user_games
+  has_many :players
+  has_many :users, through: :players
   has_many :locations
   has_many :actions, through: :locations
 
   enum :status, %i[created started ended]
 
-  GAME_LENGTH = 600
+  GAME_LENGTH = 180
 
   def solved?
     actions.where(necessary: true, status: 'undone').empty?
@@ -27,8 +27,9 @@ class Game < ApplicationRecord
     super
   end
 
-  def overtimed?
-    self.started? && Time.current > self.started_at + GAME_LENGTH
+  def remaining_time_for(user)
+    time_spent = user_games.where(user: user).penalties * 10
+    GAME_LENGTH - (Time.current - self .started_at) - time_spent
   end
 
   def unresolved_action

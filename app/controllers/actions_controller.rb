@@ -9,29 +9,29 @@ class ActionsController < ApplicationController
 
     if @action.dependencies?
       fail_action
-    elsif @action.cost <= current_user.oxygen.quantity
+    elsif @action.cost * 10 <= current_player.remaining_time
       perform_action
     else
       fail_action_last_time
     end
 
-    GameChecker.new(current_user).check_end_game
+    GameChecker.new(current_player).check_end_game
   end
 
   private
 
   def fail_action
     @action.failure!
-    current_user.oxygen.decrement! :quantity, 1
+    current_player.add_penalty(1)
   end
 
   def fail_action_last_time
     @action.failure!
-    current_user.oxygen.update!(quantity: 0)
+    current_player.add_penalty(@action.cost)
   end
 
   def perform_action
     @action.success!
-    current_user.oxygen.decrement! :quantity, @action.cost
+    current_player.add_penalty(@action.cost)
   end
 end

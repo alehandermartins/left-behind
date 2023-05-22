@@ -24,7 +24,6 @@ class SessionsController < ApplicationController
   end
 
   def redirect_to_provider
-    puts request.referrer
     session[:return_path] = request.referrer
     redirect_to(sign_in_url, allow_other_host: true)
   end

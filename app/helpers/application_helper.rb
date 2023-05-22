@@ -10,12 +10,8 @@ module ApplicationHelper
     @current_game
   end
 
-  def oxygen
-    @current_user.oxygen.quantity
-  end
-
-  def score
-    @score ||= @current_user.current_score
+  def current_player
+    @current_player
   end
 
   def hint
@@ -27,23 +23,5 @@ module ApplicationHelper
 
   def trans(key)
     t("#{current_game.archetype}." + key)
-  end
-
-  def oxygen_score
-    return "-" if @current_user.dead?
-
-    "#{oxygen} x 100"
-  end
-
-  def time_score
-    return "-" if @current_user.dead?
-
-    600 - (current_game.ended_at - current_game.started_at).to_i
-  end
-
-  def total_score
-    return -100 if @current_user.dead?
-
-    oxygen * 100 + 600 - (current_game.ended_at - current_game.started_at).to_i
   end
 end

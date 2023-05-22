@@ -19,4 +19,9 @@ class GamesController < ApplicationController
   def update
     current_game.started!
   end
+
+  def destroy
+    current_user.update(current_game: nil)
+    redirect_to(root_path)
+  end
 end
