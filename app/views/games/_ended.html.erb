@@ -27,7 +27,7 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
           <tr>
-            <td class="px-6 py-4 whitespace-nowrap"><%= current_player.score.time %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= remaining_time(current_player.score) %></td>
             <td class="px-6 py-4 whitespace-nowrap <%= current_player.alive? ? "text-green-500" : "text-red-500" %>"><%= current_player.score.total %></td>
           </tr>
           </tbody>

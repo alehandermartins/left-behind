@@ -7,13 +7,14 @@ class GameCreator
 
   def create
     ActiveRecord::Base.transaction do
-      game = Game.create!(archetype: 'starship')
+      archetype = "starship"
+
+      game = Game.create!(archetype: archetype)
       Player.create!(user: @user, game: game)
       @user.update!(current_game: game)
 
-      archetype = YAML.safe_load(Rails.root.join('lib/archetypes/starship.yml').read)
-
-      archetype['locations'].each do |index, values|
+      file = YAML.safe_load(Rails.root.join("config/locales/#{archetype}/en.yml").read)
+      file['en'][archetype]['locations'].each do |index, values|
         location = Location.create!(game: game, index: index)
 
         values['actions'].each do |a_index, action|

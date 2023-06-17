@@ -11,6 +11,6 @@ class User < ApplicationRecord
   validates :uuid, presence: true
 
   def player
-    players.find_by(game: current_game)
+    players.includes(:game).find_by(game: current_game)
   end
 end

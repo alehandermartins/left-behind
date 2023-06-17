@@ -1,0 +1,162 @@
+en:
+  island:
+    intro: "You find yourself stranded on a deserted island after a shipwreck. The island is surrounded by treacherous waters, and your only chance of survival is to explore the island. Time is running out, and you must make critical decisions to survive and escape. Good luck!"
+    endings:
+      alive: "Congratulations! You managed to survive on the deserted island, successfully building a shelter, finding food and supplies, and creating a signal fire. Your efforts paid off, and you were rescued. Well done!"
+      dead: "Despite your best efforts, you were unable to survive on the deserted island. Your lack of shelter, food, and a signal fire proved fatal."
+    locations:
+      0:
+        name: "Beach"
+        actions:
+          0:
+            cost: 2
+            description:
+              success: "You construct a sturdy shelter using available materials, providing protection from the elements"
+              failure: "You attempt to build a shelter, but it collapses due to inadequate construction, leaving you exposed"
+            dependencies: "4"
+            necessary: true
+            hints:
+              0: "Look for large, sturdy branches and foliage to use as the framework of your shelter"
+              1: "Consider using rocks or sandbags as support for the shelter's foundation"
+            title: "Build a Shelter"
+            result:
+              success: "A sturdy shelter was constructed"
+              failure: "Shelter collapsed; you remain exposed"
+          1:
+            cost: 2
+            description:
+              success: "You light a signal fire on the beach, hoping to attract attention"
+              failure: "You attempt to light a signal fire, but the damp conditions make it difficult to ignite, reducing its effectiveness as a distress signal"
+            dependencies:
+            necessary: false
+            title: "Light a Signal Fire"
+            result:
+              success: "A signal fire was lit on the beach"
+              failure: "Signal fire failed to ignite; effectiveness reduced"
+          2:
+            cost: 1
+            description:
+              success: "You search for food and find edible plants, ensuring sustenance"
+              failure: "Your search for food proves unsuccessful, leaving you without sustenance"
+            dependencies:
+            necessary: false
+            title: "Find Food"
+            result:
+              success: "Edible plants were found and collected"
+              failure: "Food search unsuccessful; sustenance lacking"
+      1:
+        name: "Forest"
+        actions:
+          3:
+            cost: 2
+            description:
+              success: "You find a freshwater stream deep within the forest, quenching your thirst and ensuring a vital water supply"
+              failure: "You search for a water source but are unable to find one, leaving you dehydrated and vulnerable"
+            dependencies:
+            necessary: false
+            title: "Find a Water Source"
+            result:
+              success: "Freshwater stream located and accessed"
+              failure: "Water source not found; dehydration persists"
+          4:
+            cost: 3
+            description:
+              success: "You forage for edible plants and gather essential supplies from the forest, ensuring sustenance and necessary resources"
+              failure: "Your search for food and supplies proves unsuccessful, leaving you without sustenance and essential resources"
+            dependencies:
+            necessary: true
+            hints:
+              0: "Explore the forest to find resources"
+              1: "Look for natural resources that can aid your survival"
+            title: "Find Food and Gather Supplies"
+            result:
+              success: "Edible plants and essential supplies were gathered"
+              failure: "Food and supplies search unsuccessful; sustenance lacking"
+          5:
+            cost: 2
+            description:
+              success: "You setup traps in the forest, increasing your chances of catching small game for food"
+              failure: "You attempt to set traps but fail to catch any game, leaving you without a reliable food source"
+            dependencies:
+            necessary: false
+            title: "Set Traps"
+            result:
+              success: "Traps set; small game caught for food"
+              failure: "Trap setting unsuccessful; food source remains scarce"
+      2:
+        name: "Hilltop"
+        actions:
+          6:
+            cost: 2
+            description:
+              success: "You gather dry wood and start a blazing signal fire on the hilltop, increasing the chances of being spotted by passing ships or aircraft"
+              failure: "You attempt to create a signal fire, but the damp conditions make it difficult to ignite, reducing its effectiveness as a distress signal"
+            dependencies: "4"
+            necessary: true
+            hints:
+              0: "Collect dry wood to ensure a successful signal fire"
+              1: "Choose a high vantage point for maximum visibility"
+            title: "Create a Signal Fire"
+            result:
+              success: "A blazing signal fire was created on the hilltop"
+              failure: "Signal fire failed to ignite; effectiveness reduced"
+          7:
+            cost: 3
+            description:
+              success: "You explore the hilltop and discover an old radio transmitter, which can potentially be used to send a distress signal"
+              failure: "You search the hilltop but fail to find any means of communication, leaving you without a way to send a distress signal"
+            dependencies:
+            necessary: false
+            title: "Search for Communication Device"
+            result:
+              success: "An old radio transmitter was found"
+              failure: "No communication device found; distress signal impossible"
+          8:
+            cost: 1
+            description:
+              success: "You find a high vantage point on the hilltop, allowing you to survey the surroundings for possible rescue"
+              failure: "Your attempt to find a suitable vantage point proves unsuccessful, limiting your visibility and chances of rescue"
+            dependencies:
+            necessary: false
+            title: "Find a Vantage Point"
+            result:
+              success: "High vantage point located; increased visibility achieved"
+              failure: "No suitable vantage point found; visibility limited"
+      3:
+        name: "Cave"
+        actions:
+          9:
+            cost: 3
+            description:
+              success: "You explore the cave and discover a hidden freshwater source, providing a reliable water supply"
+              failure: "You search the cave but are unable to find a water source, leaving you dehydrated and vulnerable"
+            dependencies:
+            necessary: false
+            title: "Find a Water Source"
+            result:
+              success: "Hidden freshwater source located within the cave"
+              failure: "Water source not found; dehydration persists"
+          10:
+            cost: 2
+            description:
+              success: "You discover a hidden stash of preserved food in the cave, ensuring a reliable source of sustenance"
+              failure: "Your search for food proves fruitless, leaving you without a reliable food source"
+            dependencies:
+            necessary: false
+            title: "Find Food"
+            result:
+              success: "Hidden stash of preserved food discovered"
+              failure: "Food search unsuccessful; sustenance lacking"
+          11:
+            cost: 2
+            description:
+              success: "You discover an ancient artifact hidden within the depths of the cave"
+              failure: "Your search for valuable artifacts proves fruitless, and you leave the cave empty-handed"
+            dependencies:
+            necessary: false
+            title: "Search for Ancient Artifact"
+            result:
+              success: "An ancient artifact of great historical and cultural significance is unearthed"
+              failure: "No valuable artifact found; the cave yields no treasures"
+
+

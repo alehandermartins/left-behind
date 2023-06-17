@@ -1,7 +1,6 @@
 en:
   starship:
     intro: "You're on a starship traveling through an asteroid field when suddenly, a barrage of asteroids hits your ship. The impact damages the oxygen supply system, causing the air to become toxic. You have to act fast and make critical decisions to survive before your oxygen runs out. Good luck!"
-    logs: "Awaiting logs..."
     endings:
       alive: "Congratulations! You managed to survive by activating the emergency thrusters to avoid the collision, resetting the oxygen filters to make the air breathable again, and synthesizing oxygen to replenish the supply. Well done!"
       dead: "Despite your best efforts, you were unable to survive. The oxygen supply could not be replenished in time, leading to your demise"

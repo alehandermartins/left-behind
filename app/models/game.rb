@@ -27,11 +27,6 @@ class Game < ApplicationRecord
     super
   end
 
-  def remaining_time_for(user)
-    time_spent = user_games.where(user: user).penalties * 10
-    GAME_LENGTH - (Time.current - self .started_at) - time_spent
-  end
-
   def unresolved_action
     actions.where(necessary: true, status: :undone).sample
   end

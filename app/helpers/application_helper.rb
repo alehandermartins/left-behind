@@ -14,6 +14,15 @@ module ApplicationHelper
     @current_player
   end
 
+  def remaining_time(score)
+    total_seconds = score.time
+
+    seconds = total_seconds % 60
+    minutes = (total_seconds / 60) % 60
+
+    format("%02d:%02d", minutes, seconds)
+  end
+
   def hint
     action = current_game.unresolved_action
     return unless action.present?

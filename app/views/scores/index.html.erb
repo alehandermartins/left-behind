@@ -18,7 +18,7 @@
             <% @scores.each do |score| %>
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap"><%= score.archetype.capitalize %></td>
-                <td class="px-6 py-4 whitespace-nowrap"><%= score.time %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= remaining_time(score) %></td>
                 <td class="px-6 py-4 whitespace-nowrap <%= score.total > 0 ? "text-green-500" : "text-red-500" %>"><%= score.total %></td>
               </tr>
             <% end %>
