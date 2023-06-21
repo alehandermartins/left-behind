@@ -1,9 +1,14 @@
 <% if current_game %>
   <%= link_to "Continue", game_path(current_game), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
-<% else %>
+<% elsif game_available? %>
   <%= form_tag(controller: "games", action: "create", method: "post") do %>
     <%= submit_tag "New Game", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg hover:cursor-pointer transition duration-300 ease-in-out hover:bg-blue-700 transform hover:-translate-y-1 hover:shadow-lg" %>
   <% end %>
+<% else %>
+  <div class="flex flex-col items-center">
+    <p class="text-gray-500 mt-2">Sorry, no more games available.</p>
+    <p class="text-gray-500 text-xs mt-2">..we will notify you when they are ready.</p>
+  </div>
 <% end %>
 
 <div>

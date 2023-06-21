@@ -13,4 +13,10 @@ class User < ApplicationRecord
   def player
     players.includes(:game).find_by(game: current_game)
   end
+
+  def played_archetypes
+    games.map do |game|
+      game.archetype
+    end
+  end
 end

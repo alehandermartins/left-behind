@@ -6,6 +6,10 @@ module ApplicationHelper
     @current_user.email.present?
   end
 
+  def game_available?
+    !(GameCreator::ARCHETYPES - @current_user.played_archetypes).empty?
+  end
+
   def current_game
     @current_game
   end

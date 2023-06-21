@@ -1,0 +1,160 @@
+en:
+  labyrinth:
+    intro: "You awaken in a mysterious underground labyrinth, its twisting passages shrouded in darkness. With no memory of how you arrived, you must navigate the treacherous maze, solve puzzles, and uncover its secrets to escape. Time is ticking, and your survival depends on your wits. Good luck!"
+    endings:
+      alive: "Congratulations! You have successfully navigated the labyrinth, overcoming its challenges and unraveling its mysteries. With a triumphant step, you emerge from the maze, victorious and filled with a sense of accomplishment. Well done!"
+      dead: "Alas, despite your best efforts, the labyrinth proved too formidable. Its traps and puzzles overwhelmed you, leading to your unfortunate demise within its depths. Your journey ends here, but your courage will be remembered."
+    locations:
+      0:
+        name: "The Forgotten Library"
+        actions:
+          0:
+            title: Decode hidden lever's location
+            cost: 3
+            description:
+              success: You successfully decipher the riddle and locate the hidden lever.
+              failure: Your attempts to solve the riddle lead to confusion.
+            dependencies:
+            necessary: false
+            result:
+              success: You reveal the secret location of the hidden lever.
+              failure: You feel disheartened by the failure to decode the riddle.
+          1:
+            title: Discover riddle in ancient diary
+            cost: 2
+            description:
+              success: You found a hidden riddle in the ancient diary.
+              failure: You couldn't decipher the cryptic notes in the diary.
+            dependencies:
+            hints:
+              0: The key to unraveling the riddle lies within the intricate sketches accompanying the cryptic notes.
+              1: Pay attention to the peculiar ink patterns on the pages to unveil the hidden message.
+            necessary: true
+            result:
+              success: You gain a crucial clue to uncover the hidden lever's location.
+              failure: You feel frustrated by the cryptic writings.
+          2:
+            title: Uncover labyrinth's mysterious history
+            cost: 1
+            description:
+              success: You delve into the ancient tomes and unravel the labyrinth's history.
+              failure: The contents of the books confuse rather than enlighten you.
+            dependencies:
+            necessary: false
+            result:
+              success: You gain valuable insights into the maze's origin and purpose.
+              failure: You find no useful information, only further mysteries.
+      1:
+        name: "The Hall of Illusions"
+        actions:
+          3:
+            title: Identify safe path symbols
+            cost: 2
+            description:
+              success: You decipher the symbols, revealing the safe paths.
+              failure: The symbols remain incomprehensible, leaving you uncertain.
+            dependencies: "1"
+            hints:
+              0: Observe the orientation of the symbols in relation to the maze walls for a clue to safe paths.
+              1: Look for patterns in the arrangement of the symbols to discern the correct path through illusions.
+            necessary: true
+            result:
+              success: You confidently navigate through the maze's illusions.
+              failure: You struggle to find a reliable path through the illusions.
+          4:
+            title: Navigate through deceptive reflections
+            cost: 3
+            description:
+              success: You skillfully distinguish real paths from mere reflections.
+              failure: The reflections bewilder you, leading to wrong turns.
+            dependencies:
+            necessary: false
+            result:
+              success: You successfully navigate through the Hall's deceptive traps.
+              failure: You become disoriented by the confusing reflections.
+          5:
+            title: Solve optical illusion puzzles
+            cost: 1
+            description:
+              success: You solve intricate puzzles, bypassing optical illusions.
+              failure: The puzzles prove too challenging, frustrating your progress.
+            dependencies:
+            necessary: false
+            result:
+              success: You bypass the illusions and move closer to the exit.
+              failure: You feel perplexed, unable to overcome the optical obstacles.
+      2:
+        name: "The Chamber of Shadows"
+        actions:
+          6:
+            title: Use flickering flashlight strategically
+            cost: 2
+            description:
+              success: You skillfully use the flashlight to reveal hidden paths.
+              failure: Your flashlight flickers, making it difficult to navigate.
+            dependencies:
+            necessary: false
+            result:
+              success: You uncover hidden paths and avoid potential dangers.
+              failure: You struggle to see in the dark, impeding your progress.
+          7:
+            title: Avoid lurking creatures
+            cost: 3
+            description:
+              success: You cautiously navigate past the creatures, remaining undetected.
+              failure: The creatures notice you, initiating a dangerous encounter.
+            dependencies:
+            necessary: false
+            result:
+              success: You move silently through the chamber, evading the creatures.
+              failure: You face a perilous confrontation with the lurking creatures.
+          8:
+            title: Uncover hidden paths in darkness
+            cost: 1
+            description:
+              success: You discern hidden paths through careful observation.
+              failure: The darkness obscures the paths, leaving you uncertain.
+            dependencies: "3"
+            hints:
+              0: Listen closely for subtle echoes and air currents, guiding you towards hidden paths in the darkness.
+              1: Feel the texture of the walls with your hands to identify hidden grooves and openings.
+            necessary: true
+            result:
+              success: You successfully navigate through the darkness, finding new routes.
+              failure: You struggle to find viable paths in the obscure chamber.
+      3:
+        name: "The Clockwork Observatory"
+        actions:
+          9:
+            title: Analyze celestial alignment clues
+            cost: 2
+            description:
+              success: You decipher the celestial clues, gaining insights into the maze's alignment.
+              failure: The celestial clues confuse you, leaving you without clear direction.
+            dependencies:
+            necessary: false
+            result:
+              success: You understand the celestial alignment, unlocking new pathways.
+              failure: You feel uncertain about the significance of the celestial clues.
+          10:
+            title: Decipher constellations and maps
+            cost: 3
+            description:
+              success: You successfully decode the constellations and maps, revealing hidden knowledge.
+              failure: Deciphering the constellations and maps proves challenging and inconclusive.
+            dependencies:
+            necessary: false
+            result:
+              success: You uncover crucial information about the labyrinth's layout and secrets.
+              failure: Your attempts to decipher the constellations and maps yield limited results.
+          11:
+            title: Activate clockwork mechanisms
+            cost: 1
+            description:
+              success: You skillfully operate the clockwork mechanisms, unlocking new passages.
+              failure: Your attempts to activate the clockwork mechanisms yield no apparent results.
+            dependencies:
+            necessary: false
+            result:
+              success: You open previously inaccessible routes, progressing deeper into the labyrinth.
+              failure: You are left unsure of how to make the clockwork mechanisms function.

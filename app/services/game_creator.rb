@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 class GameCreator
+
+  ARCHETYPES = %w[starship island labyrinth]
+
   def initialize(user)
     @user = user
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      archetype = "starship"
+    archetype = (ARCHETYPES - @user.played_archetypes).sample
 
+    ActiveRecord::Base.transaction do
       game = Game.create!(archetype: archetype)
       Player.create!(user: @user, game: game)
       @user.update!(current_game: game)

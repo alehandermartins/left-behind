@@ -6,14 +6,14 @@
         <div class="min-w-0 flex-1">
           <span class="absolute inset-0" aria-hidden="true"></span>
           <div class= <%= action.necessary ? "text-green-500" : "text-black-500"%>>
-            <%= trans("locations.#{action.location.index}.actions.#{action.index}.result.success") %>
+            <%= display_result(action) %>
           </div>
         </div>
       <% else %>
         <div data-controller="action">
           <div class="relative flex items-center space-x-3 <%= action.result == :failure ? "hidden" : "" %>" data-action-target="button" >
             <div class="text-blue-500">
-              <span class="text-green-500"><%= action.cost %></span> <span> / </span><span class="text-red-500">1</span><span> Oxygen</span>
+              <span class="text-green-500"><%= action.cost %></span> <span> / </span><span class="text-red-500">1</span><span> Effort</span>
             </div>
             <div class="min-w-0 flex-1">
               <span class="absolute inset-0" aria-hidden="true"></span>

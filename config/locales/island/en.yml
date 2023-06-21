@@ -17,7 +17,7 @@ en:
             necessary: true
             hints:
               0: "Look for large, sturdy branches and foliage to use as the framework of your shelter"
-              1: "Consider using rocks or sandbags as support for the shelter's foundation"
+              1: "Nights are harsh in this environment"
             title: "Build a Shelter"
             result:
               success: "A sturdy shelter was constructed"
